@@ -1,9 +1,5 @@
 # -----------------------------------------------------------------------------
 # Name:        spellcheck
-# Purpose:     Demonstrate files and the use of sets
-#
-# Author:      Rula Khayrallah
-#
 # -----------------------------------------------------------------------------
 """
 A rudimentary spell checker
