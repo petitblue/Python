@@ -1,0 +1,118 @@
+# -----------------------------------------------------------------------------
+"""
+Open a file and compute some language statistics based on its content
+
+Prompt the user to enter the file name to read the file
+Compute the longest word used in the file. If there's more than one, print
+one of them
+Compute five most common words in the file based on their frequencies
+Count the all of the words in the file, sort them alphabetically
+Write the output of word counts in a file'out.txt'
+"""
+import string
+import tkinter
+import random
+from tkinter.font import Font
+
+# to generate a word cloud.
+def draw_cloud(input_count, min_length=0):
+    """
+    Generate a word cloud based on the input count dictionary specified.
+
+    Parameters:
+    input_count (dict): represents words and their corresponding counts.
+    min_length (int):  optional - defaults to 0.
+         minimum length of the words that will appear
+         in the cloud representation.
+    Only the 20 most common words (that satisfy the minimum length criteria)
+    are included in the generated cloud.
+    """
+    root = tkinter.Tk()
+    root.title("Word Cloud Fun")
+    # filter the dictionary by word length
+    filter_count = {
+        word: input_count[word] for word in input_count
+        if len(word) >= min_length}
+    max_count = max(filter_count.values())
+    ratio = 100 / max_count
+    frame = tkinter.Frame(root)
+    frame.grid()
+    current_row = 0
+    for word in sorted(filter_count, key=filter_count.get, reverse=True)[0:20]:
+        color = '#' + str(hex(random.randint(256, 4095)))[2:]
+        word_font = tkinter.font.Font(size=int(filter_count[word] * ratio))
+        label = tkinter.Label(frame, text=word, font=word_font, fg=color)
+        label.grid(row=current_row % 5, column=current_row // 5)
+        current_row += 1
+    root.mainloop()
+
+def count_words(filename):
+    """
+    Count the words in the string text
+
+    Parameter: filename
+    Returns: a dictionary with items of the form word: count
+    """
+    word_dict = {}  # initialize the dictionary
+    # open and read the input file
+    with open(filename, 'r', encoding='utf-8')as my_file:
+        # read the file one line at a time
+        for line in my_file:
+            # convert each line to lowercase and split each line
+            for word in line.lower().split():
+                # take out leading and trailing punctuation and numbers
+                word = word.strip(string.punctuation+string.digits)
+                # if the word is empty, move to the next one
+                if not word.strip():
+                    continue
+                else:
+                    if word not in word_dict:
+                     word_dict[word] = 1  # add a new entry to the dictionary
+                    else:
+                     word_dict[word] += 1  # update the dictionary
+
+        return word_dict
+
+
+def report(word_dict):
+    """
+    Report some statistics based on the given word count dictionary
+
+    Parameter:
+    word_dict -a dictionary with items of the form word: count
+    Return: None
+    """
+    # get the longest word in the dictionary
+    longest_word = max(word_dict, key=len)
+    print('The longest word is: ', longest_word)
+    # sort the dictionary based on the appearance of words
+    frequency_list = sorted(word_dict, key=word_dict.get, reverse=True)
+    top_five = frequency_list[:5] # slice the frequency list
+    print('The 5 most common words are: ')
+    for word in top_five:
+        print(word + ':', word_dict[word])
+
+    # sort the words alphabetically
+    alphabet_word = sorted(word_dict.items())
+    # create a text file and write the word and counts in alphabetical order
+    with open('out.txt', 'w', encoding='utf-8') as output_file:
+        for word, count in alphabet_word:
+            output_file.write(word + ':' + str(count) + '\n')
+
+
+def main():
+    # get the input filename and save it in a variable
+    filename = input('please enter a file name: ')
+
+    # call count_words to build the dictionary for the given file
+    word_dict= count_words(filename)
+    # save the dictionary in the variable word_count
+    word_count=word_dict
+    # call report to report on the contents of the dictionary word_count
+    report(word_count)
+    # draw_cloud(word_count)
+    draw_cloud(word_count, min_length=0)
+
+
+if __name__ == '__main__':
+    main()
