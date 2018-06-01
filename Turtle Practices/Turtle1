@@ -1,1 +1,43 @@
 
+import turtle
+
+wn = turtle.Screen()
+wn.bgcolor('lightblue')
+wn.title('type')
+equi_tri = turtle.Turtle()
+square = turtle.Turtle()
+hexagon = turtle.Turtle()
+octagon = turtle.Turtle()
+for i in range(3):
+    equi_tri.forward(50)
+    equi_tri.left(120)
+
+
+for m in range(4):
+    square.forward(50)
+    square.left(90)
+
+for y in range(6):
+    hexagon.forward(50)
+    hexagon.left(180-(4*180/6))
+
+for x in range(8):
+    octagon.forward(50)
+    octagon.left(180-(6*180/8))
+    
+    
+    
+import turtle
+wn = turtle.Screen()
+wn.bgcolor('pink')
+
+pirate = turtle.Turtle()
+
+angel = [160, -43, 270, -97, -43, 200, -940, 17, -86]
+for a in angel:
+
+    pirate.forward(100)
+    pirate.left(a)
+pirate.stamp()
+
+wn.mainloop()
