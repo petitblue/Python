@@ -1,14 +1,11 @@
 # -----------------------------------------------------------------------------
 # Name:        crypto
-# Purpose:     CS 21 assignment # 3
-#
+# 
 # Author: Luyan Deng
-# Date: 1/22/2018
+
 # -----------------------------------------------------------------------------
 """
-Enter your docstring with a one-line overview here
 
-and a more detailed description here.
 """
 
 def starts_with_vowel(word):
