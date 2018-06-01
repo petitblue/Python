@@ -1,9 +1,5 @@
 # -----------------------------------------------------------------------------
 # Name:        aggregator.py
-# Purpose:     CS 21A - implement a simple general purpose aggregator
-#
-# Author: Luyan Deng
-# Date: 03/08/2018
 # -----------------------------------------------------------------------------
 """
 Implement a simple general purpose aggregator
