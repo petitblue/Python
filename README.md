@@ -1,4 +1,0 @@
-# Python
-# turtle
-# grader
-# encryter
