@@ -1,8 +1,6 @@
 # -----------------------------------------------------------------------------
 # Name:       tictac
-# Purpose:    Implement a game of Tic Tac Toe
-#
-# Author: Luyan Deng
+
 # -----------------------------------------------------------------------------
 '''
 Module to implement a Tic-tac-toe game between human player and computer
